@@ -1,17 +1,21 @@
-from pypdf import PdfReader
+from pptx import Presentation
+import os
 
-pdf_path = r"C:\Users\Hari Shankar Kumar\OneDrive\Desktop\semester-study-assistant\data\Computer_Network\syllabus.pdf"
+notes_folder = r"C:\Users\Hari Shankar Kumar\OneDrive\Desktop\semester-study-assistant\data\Descrete_Mathematics\notes"
 
-reader = PdfReader(pdf_path)
+for file in os.listdir(notes_folder):
+    if file.endswith(".pptx"):
+        ppt_path = os.path.join(notes_folder, file)
+        try:
+            prs = Presentation(ppt_path)
+            full_text = []
 
-print("Total Pages:", len(reader.pages))
-print("=" * 50)
+            for slide in prs.slides:
+                for shape in slide.shapes:
+                    if hasattr(shape, "text"):
+                        full_text.append(shape.text)
 
-for i in range(min(2, len(reader.pages))):
-    text = reader.pages[i].extract_text()
-    
-    print(f"\n----- Page {i+1} -----\n")
-    if text:
-        print(text[:1500])
-    else:
-        print("❌ No text found on this page")
+            text = "\n".join(full_text)
+            print(f"✅ {file} → {len(prs.slides)} slides | Text length: {len(text)} characters")
+        except Exception as e:
+            print(f"❌ {file} → Error: {e}")
