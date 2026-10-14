@@ -3,6 +3,9 @@ import numpy as np
 import pickle
 import os
 
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+DEFAULT_PROCESSED_DIR = os.path.join(BASE_DIR, "processed_data")
+
 def create_faiss_index(embeddings):
     """
     Embeddings se FAISS index banata hai.
@@ -18,20 +21,22 @@ def create_faiss_index(embeddings):
     return index
 
 
-def save_faiss_index(index, save_folder="processed_data"):
+def save_faiss_index(index, save_folder=None):
     """
     FAISS index ko save karta hai.
     """
-    os.makedirs(save_folder, exist_ok=True)
-    faiss.write_index(index, f"{save_folder}/faiss_index.index")
-    print(f"✅ FAISS index saved in '{save_folder}'")
+    target_folder = save_folder or DEFAULT_PROCESSED_DIR
+    os.makedirs(target_folder, exist_ok=True)
+    faiss.write_index(index, os.path.join(target_folder, "faiss_index.index"))
+    print(f"✅ FAISS index saved in '{target_folder}'")
 
 
-def load_faiss_index(save_folder="processed_data"):
+def load_faiss_index(save_folder=None):
     """
     Saved FAISS index ko load karta hai.
     """
-    index = faiss.read_index(f"{save_folder}/faiss_index.index")
+    target_folder = save_folder or DEFAULT_PROCESSED_DIR
+    index = faiss.read_index(os.path.join(target_folder, "faiss_index.index"))
     return index
 
 
