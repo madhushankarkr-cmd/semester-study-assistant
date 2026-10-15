@@ -33,7 +33,7 @@ eval_set = [
     {"q": "What is a proposition?", "subject": "Descrete_Mathematics"},
     {"q": "What is a set?", "subject": "Descrete_Mathematics"},
     {"q": "What is a graph in discrete mathematics?", "subject": "Descrete_Mathematics"},
-    {"q": "What is a relation?", "subject": "Descrete_Mathematics"},
+    {"q": "What is a relation between two sets in discrete mathematics?", "subject": "Descrete_Mathematics"},
 
     # Data Science
     {"q": "What is exploratory data analysis?", "subject": "Data_Science_&_Visualization"},
