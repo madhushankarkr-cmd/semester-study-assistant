@@ -12,7 +12,7 @@
 
 ## Live Demo
 
-[Open the app](https://YOUR-APP-NAME.streamlit.app)
+[Open the app](https://semester-study-assistant-bpvl97gjbejzrbpjzxbcxw.streamlit.app/)
 
 > First load may take 20-40 seconds if the app was sleeping (free tier).
 
