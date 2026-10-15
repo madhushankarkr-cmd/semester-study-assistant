@@ -6,9 +6,15 @@
 ![Streamlit](https://img.shields.io/badge/UI-Streamlit-FF4B4B)
 ![FAISS](https://img.shields.io/badge/Vector%20Search-FAISS-0467DF)
 ![LLM](https://img.shields.io/badge/LLM-Groq-orange)
-![Status](https://img.shields.io/badge/Status-Local%20%7C%20Deployment%20planned-lightgrey)
+![Status](https://img.shields.io/badge/Status-Live-brightgreen)
 
 ---
+
+## Live Demo
+
+[Open the app](https://YOUR-APP-NAME.streamlit.app)
+
+> First load may take 20-40 seconds if the app was sleeping (free tier).
 
 ## Overview
 
@@ -203,19 +209,30 @@ This is an early evaluation setup and is meant to be expanded (see Future Improv
 
 ## Deployment
 
-The app is **not deployed yet**. Planned deployment target: Streamlit Community Cloud.
+Deployed on **Streamlit Community Cloud**.
+
+| Item | Value |
+|---|---|
+| Platform | Streamlit Community Cloud |
+| Main file | `app/app.py` |
+| Live app | [Open demo](https://semester-study-assistant-bpvl97gjbejzrbpjzxbcxw.streamlit.app/) |
+
+### Secrets (Streamlit Cloud)
+
+Add these in the app settings under Secrets:
+
+```toml
+GROQ_API_KEY = "your_actual_groq_api_key"
+GROQ_MODEL = "openai/gpt-oss-20b"
+```
+
+### Deployment steps
 
 1. Push the project to GitHub.
 2. Connect the repository in Streamlit Community Cloud.
 3. Set the main file path to `app/app.py`.
-4. Add the secrets in the app settings:
-   ```toml
-   GROQ_API_KEY = "your_actual_groq_api_key"
-   GROQ_MODEL = "openai/gpt-oss-20b"
-   ```
+4. Add the secrets above in the app settings.
 5. Deploy.
-
-A live link will be added here once the app is deployed.
 
 ## Security and API Key Handling
 
@@ -229,6 +246,7 @@ A live link will be added here once the app is deployed.
 - **Fallback is not notes-only RAG.** The app can answer from general LLM knowledge when the notes do not help, and those answers are not verified against the course material.
 - **Fallback detection is phrase-based.** The pipeline checks the notes-based answer for phrases that signal missing information, which is simple but can misfire in either direction. In the answer evaluation, the normalization question fell back to general knowledge.
 - **Evaluation is small and lenient** (see above); retrieval quality at the chunk level has not been measured.
+- **General-knowledge fallback is not real-time web search.** Answers about current events can be outdated; the UI labels these as general knowledge.
 - **Sources are shown as files**, not as page-level citations.
 - Small knowledge base limited to one semester and five subjects.
 - Embedding model is English-oriented; Hinglish queries may retrieve less accurately.
@@ -245,15 +263,13 @@ A live link will be added here once the app is deployed.
 - [ ] Hybrid search (BM25 + embeddings) and a reranker, compared with an ablation table
 - [ ] Chunk-size experiments
 - [ ] OCR support for scanned PDFs
-- [ ] Deploy on Streamlit Community Cloud and add the live link
+- [x] Deploy on Streamlit Community Cloud
 
 ## Screenshots
 
-| Home | Answer from notes | General-knowledge fallback |
+| Home | From notes | General fallback |
 |---|---|---|
-| _Add screenshot_ | _Add screenshot_ | _Add screenshot_ |
-
-<!-- Save images in docs/ and reference them like: ![Home](docs/home.png) -->
+| ![Home](docs/home.png) | ![Notes](docs/notes.png) | ![General](docs/general.png) |
 
 ## Contributing
 
@@ -267,4 +283,4 @@ A license file has not been added yet. Until one is added, all rights are reserv
 
 **Madhu Shankar Kumar**  
 BTech CSE | AI & Data Science, GLA University  
-[GitHub](https://github.com/madhushankarkr-cmd) · [LinkedIn](https://www.linkedin.com/) <!-- replace with your profile link -->
+[GitHub](https://github.com/madhushankarkr-cmd) · [LinkedIn](https://www.linkedin.com/in/madhu-shankar-kumar-74563537b/) <!-- replace with your profile link -->
